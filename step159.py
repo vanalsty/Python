@@ -1,13 +1,14 @@
 import os
-import datetime
 import os.path,time
 
-from os import listdir
-from os.path import isfile, join
-path = "C:\\PythonStep159"
-onlyTxtFiles = [f for f in listdir(path) if isfile(join(path, f)) and  f.endswith(".txt")]
-print(onlyTxtFiles)
+from datetime import datetime
 
+src = "C:\\PythonStep159"  ## or whatever your source directory is
 
-
-print("Last Modification:%s"%time.ctime(os.path.getmtime("C:\\PythonStep159\\anotherOne.txt")))
+sourceFiles = os.listdir(src) ## makes a list of all file names to iterate through
+for file in sourceFiles:
+    if file.endswith(".txt"):
+        abPath = os.path.join(src, file)
+        print(abPath)
+        modTime = datetime.fromtimestamp(os.path.getmtime(abPath))  ## this fromtimestamp bit converts time since the epoch to something that is a bit more readable / has meaning to us
+        print(modTime)
