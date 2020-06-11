@@ -14,10 +14,10 @@ with conn:
     conn.commit()
 
 
-src = "C:\\PythonStep162" 
+src = ('information.docx', 'Hello.txt', 'myImage.png',\
+       'myMovie.mpg', 'World.txt', 'data.pdf', 'myPhoto.jpg')
 
-sourceFiles = os.listdir(src) 
-for file in sourceFiles:
+for file in src:
     if file.endswith(".txt"):
         cur = conn.cursor()
         cur.execute("INSERT INTO tbl_fileList(col_fileName)VALUES (\"%s\");" \
