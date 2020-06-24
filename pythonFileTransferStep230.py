@@ -3,6 +3,8 @@ from tkinter import *
 from tkinter.filedialog import askdirectory
 import os
 import shutil
+import datetime
+from datetime import timedelta
 
 
 
@@ -66,12 +68,14 @@ class ParentWindow(Frame):
         path=os.listdir()
         dpath=self.txtDestination.get()
         for filename in os.listdir(spath):
-            if filename.endswith('.txt'):
-                shutil.move(spath+'/'+filename, dpath)
-                print(filename)
-                continue
-            else:
-                continue
+            file_path = os.path.join(spath, filename)
+            hours_ago_24 = datetime.datetime.now() - timedelta(hours = 24)
+            modification_time = os.path.getmtime(file_path)
+            date_time_of_file = datetime.datetime.fromtimestamp(modification_time)
+            if hours_ago_24 < date_time_of_file:
+                if filename.endswith('.txt'):
+                    shutil.move(spath+'/'+filename, dpath)
+                    print (filename)
 
         
     def Check(self):
@@ -79,13 +83,15 @@ class ParentWindow(Frame):
         path=os.listdir()
         dpath=self.txtDestination.get()
         for filename in os.listdir(spath):
-            if filename.endswith('.txt'):
-                print(filename)
-                paths=os.path.join(spath, filename)
-                print(os.path.getmtime(paths))
-                continue
-            else:
-                continue
+            file_path = os.path.join(spath, filename)
+            hours_ago_24 = datetime.datetime.now() - timedelta(hours = 24)
+            modification_time = os.path.getmtime(file_path)
+            date_time_of_file = datetime.datetime.fromtimestamp(modification_time)
+            if hours_ago_24 < date_time_of_file:
+                if filename.endswith('.txt'):
+                    print(filename)
+                    
+                  
 
 
 if __name__ == "__main__":
