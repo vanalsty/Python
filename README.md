@@ -1,6 +1,5 @@
 # Python
-Python assignments from the Tech Academy <br />
-Includes: <br />
+Python assignments from the Tech Academy includes: <br />
 *Tkinter <br />
 *Phonebook application <br />
 *Nice or Mean game <br />
